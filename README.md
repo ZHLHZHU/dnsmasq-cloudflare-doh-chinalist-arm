@@ -1,10 +1,12 @@
-# dnsmasq-with-cloudflare-doh-and-chinalist
+# dnsmasq-cloudflare-doh-chinalist-arm
 A dockerfile for building a dnsmasq container with DoH and China Domain List.
 
-# Usage
+Support raspberrypi.
 
+# Usage
+``` bash
     mkdir docker-chinalist-dns && cd docker-chinalist-dns
-    git clone https://github.com/moesoha/docker-dnsmasq-with-cloudflare-doh-and-chinalist.git .
-    docker build -t chinalist-dns:latest .
-    docker run -p 53:53 chinalist-dns:latest
-    
+    git clone https://github.com/ZHLHZHU/dnsmasq-cloudflare-doh-chinalist-arm.git .
+    docker build -t chinalist-dns:latest . --network host
+    sudo docker run -p 53:53 chinalist-dns:latest
+```    

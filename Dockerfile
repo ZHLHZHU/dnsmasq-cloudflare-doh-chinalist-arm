@@ -3,8 +3,8 @@
 # Soha Jin https://sohaj.in
 #
 
-FROM debian:jessie
-MAINTAINER Soha Jin <soha@lohu.info>
+FROM debian:stable
+LABEL maintainer="Soha Jin <soha@lohu.info> ZHLH <ZHLH_ZHU@163.com>"
 
 ENV CFD_URL https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.tgz
 ENV CFD_FILE cloudflared.tar.gz
@@ -13,9 +13,9 @@ ENV CDL_FILE chinalist.tar.gz
 
 ENV CHINA_DNS_SERVER 114.114.115.115
 
-# replace source for apt
-#RUN sed -i -e "s/deb.debian.org/mirrors4.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list && sed -i -e "s/security.debian.org/mirrors4.tuna.tsinghua.edu.cn\\/debian-security/g" /etc/apt/sources.list
-RUN apt-get update \
+RUN sed -i "s:security.debian.org:mirrors.ustc.edu.cn:g" /etc/apt/sources.list \
+	&& sed -i "s:deb.debian.org:mirrors.ustc.edu.cn:g" /etc/apt/sources.list \
+	&& apt-get update \
 	&& apt-get install -y curl dnsmasq supervisor \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
