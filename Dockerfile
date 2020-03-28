@@ -6,7 +6,7 @@
 FROM debian:stable
 LABEL maintainer="Soha Jin <soha@lohu.info> ZHLH <ZHLH_ZHU@163.com>"
 
-ENV CFD_URL https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.tgz
+ENV CFD_URL https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
 ENV CFD_FILE cloudflared.tar.gz
 ENV CDL_URL https://github.com/felixonmars/dnsmasq-china-list/archive/master.tar.gz
 ENV CDL_FILE chinalist.tar.gz
