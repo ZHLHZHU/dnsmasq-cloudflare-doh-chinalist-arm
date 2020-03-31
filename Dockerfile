@@ -6,8 +6,8 @@
 FROM debian:stable
 LABEL maintainer="Soha Jin <soha@lohu.info> ZHLH <ZHLH_ZHU@163.com>"
 
-ENV CFD_URL https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-ENV CFD_FILE cloudflared.tar.gz
+# ENV CFD_URL https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
+# ENV CFD_FILE cloudflared.tar.gz
 ENV CDL_URL https://github.com/felixonmars/dnsmasq-china-list/archive/master.tar.gz
 ENV CDL_FILE chinalist.tar.gz
 
@@ -23,7 +23,9 @@ RUN sed -i "s:security.debian.org:mirrors.ustc.edu.cn:g" /etc/apt/sources.list \
 RUN mkdir /app
 WORKDIR /app
 # CloudFlare DNS over HTTPS
-RUN curl -SL ${CFD_URL} -o ${CFD_FILE} && tar zxvf ${CFD_FILE} && rm -rf ${CFD_FILE} && cp ./cloudflared /bin/
+# RUN curl -SL ${CFD_URL} -o ${CFD_FILE} && tar zxvf ${CFD_FILE} && rm -rf ${CFD_FILE} && cp ./cloudflared /bin/
+ADD cloudflared-stable-linux-arm.tgz ./
+RUN cp ./cloudflared /bin/
 # get China Domain List
 RUN mkdir chinalist && cd chinalist \
 	&& curl -SL ${CDL_URL} -o ${CDL_FILE} && tar zxvf ${CDL_FILE} --strip 1 && rm -rf ${CDL_FILE} \
